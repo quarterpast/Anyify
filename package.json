@@ -1,0 +1,34 @@
+{
+  "name": "anyify",
+  "version": "1.0.0",
+  "description": "Browserify transform for anything",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/quarterto/Anyify.git"
+  },
+  "keywords": [
+    "browserify",
+    "transform"
+  ],
+  "author": "Matt Brennan <matt@153.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/quarterto/Anyify/issues"
+  },
+  "homepage": "https://github.com/quarterto/Anyify",
+  "dependencies": {
+    "through": "^2.3.7",
+    "unstream": "^2.0.0"
+  },
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "concat-stream": "^1.5.0",
+    "dirty-chai": "^1.2.1",
+    "from2-array": "0.0.3",
+    "mocha": "^2.2.5"
+  }
+}
