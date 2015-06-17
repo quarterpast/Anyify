@@ -23,4 +23,13 @@ describe('anyify', function() {
 				done();
 			});
 	});
+
+	it('should do nothing if no transform matches', function(done) {
+		from(['hello'])
+			.pipe(anyify('test.foo', {}))
+			.pipe(concat(function(data) {
+				expect(data.toString()).to.equal('hello');
+				done();
+			}));
+	});
 });
