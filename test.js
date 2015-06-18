@@ -32,4 +32,24 @@ describe('anyify', function() {
 				done();
 			}));
 	});
+
+	describe('module methods', function() {
+		it('should access a transform by a key', function(done) {
+			from(['hello'])
+				.pipe(anyify('test.foo', {'foo': './fixtures/key.js?bar'}))
+				.pipe(concat(function(data) {
+					expect(data.toString()).to.equal('HELLO');
+					done();
+				}));
+		});
+		
+		it('should access a transform by a deep key', function(done) {
+			from(['hello'])
+				.pipe(anyify('test.foo', {'foo': './fixtures/deep.js?bar.baz.quux'}))
+				.pipe(concat(function(data) {
+					expect(data.toString()).to.equal('HELLO');
+					done();
+				}));
+		});
+	});
 });

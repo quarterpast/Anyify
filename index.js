@@ -13,7 +13,12 @@ function getTransform(file, transforms) {
 }
 
 function createTransform(s) {
-	return module.parent.require(s);
+	var bits = s.split('?', 2);
+	var m = module.parent.require(bits[0]);
+	var path = bits[1] ? bits[1].split('.') : [];
+	return path.reduce(function(o, k) {
+		return o[k];
+	}, m);
 }
 
 function anyify(file, opts) {
