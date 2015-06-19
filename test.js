@@ -33,6 +33,15 @@ describe('anyify', function() {
 			}));
 	});
 
+	it('could also use first thing of _', function(done) {
+		from(['hello'])
+			.pipe(anyify('test.foo', {foo: {_: ['./fixtures/basic.js']}}))
+			.pipe(concat(function(data) {
+				expect(data.toString()).to.equal('HELLO');
+				done();
+			}));
+	});
+ 
 	describe('module methods', function() {
 		it('should access a transform by a key', function(done) {
 			from(['hello'])

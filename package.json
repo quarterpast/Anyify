@@ -2,9 +2,9 @@
   "name": "anyify",
   "version": "1.0.0",
   "description": "Browserify transform for anything",
-  "main": "index.js",
+  "main": "lib",
   "scripts": {
-    "test": "mocha"
+    "test": "make test"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,7 @@
     "unstream": "^2.0.0"
   },
   "devDependencies": {
+    "babel": "^5.5.8",
     "chai": "^2.3.0",
     "concat-stream": "^1.5.0",
     "dirty-chai": "^1.2.1",
