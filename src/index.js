@@ -17,7 +17,7 @@ function transformMeta(transform) {
 		return {name: transform, opts: {}};
 	} else {
 		return {
-			name: transform._.[0],
+			name: transform._[0],
 			opts: transform
 		};
 	}
