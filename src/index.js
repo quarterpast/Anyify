@@ -3,40 +3,34 @@ var unstream = require('unstream');
 var through = require('through');
 
 function getTransform(file, transforms) {
-	for(var ext in transforms) {
+	for(let ext in transforms) {
 		if(path.extname(file) === '.' + ext) {
 			return transforms[ext];
 		}
 	}
-
 	return false;
 }
 
 function transformMeta(transform) {
-	if(typeof transform === 'string') {
-		return {name: transform, opts: {}};
-	} else {
-		return {
-			name: transform._[0],
-			opts: transform
-		};
-	}
+	return {
+		name: typeof transform === 'string' ? transform : transform._[0],
+		opts: typeof transform === 'string' ? {} : transform
+	};
 }
 
 function createTransform(name) {
-	var [modName, path] = name.split('?', 2);
-	var mod = module.parent.require(modName);
+	let [modName, path] = name.split('?', 2);
 	return (path ? path.split('.') : []).reduce(
 		(o, k) => o[k],
-		mod
+		module.parent.require(modName)
 	);
 }
 
 function anyify(file, opts) {
-	var transform = getTransform(file, opts);
+	let transform = getTransform(file, opts);
 	if(transform) {
-		var {name, opts} = transformMeta(transform);
-		var transformFn = createTransform(name);
+		let {name, opts} = transformMeta(transform);
+		let transformFn = createTransform(name);
 		return unstream(function(data, callback) {
 			try {
 				callback(null, transformFn(data.toString(), opts));
@@ -45,7 +39,6 @@ function anyify(file, opts) {
 			}
 		});
 	}
-
 	return through();
 }
 
