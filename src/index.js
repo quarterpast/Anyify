@@ -39,7 +39,7 @@ function anyify(file, opts) {
 		var transformFn = createTransform(name);
 		return unstream(function(data, callback) {
 			try {
-				callback(null, transformFn(data, opts));
+				callback(null, transformFn(data.toString(), opts));
 			} catch(e) {
 				callback(e);
 			}
